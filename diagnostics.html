@@ -715,10 +715,10 @@ $ header-typedef signal.h <span class="hljs-operator">-s</span> sigevent_t
         hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$hname</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
     <span class="hljs-keyword">done</span>
 
-    cpp <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | awk <span class="hljs-string">&apos;/.*extern.+\w+[ ]*\(/&apos;</span>
+    cpp <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | awk <span class="hljs-string">&apos;/\yextern\s.+\w+\s*\(/&apos;</span>
 
     cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed <span class="hljs-string">&apos;/^#.*&quot;&lt;built-in&gt;&quot;/,/^# [0-9]\+ &quot;/d&apos;</span> |
-    grep <span class="hljs-string">&apos;#define&apos;</span> | awk <span class="hljs-string">&apos;$2 ~ /^\w+\(/&apos;</span> | sort -u
+    grep -E <span class="hljs-string">&apos;#define\s+\w+\(&apos;</span> | sort -u
 }
 
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">macro</span></span> () 
