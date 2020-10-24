@@ -696,24 +696,28 @@ $ header-typedef signal.h
 <span class="hljs-comment"># signal.h &#xD5E4;&#xB354;&#xB97C; #include &#xD588;&#xC744; &#xB54C; sigevent_t &#xC815;&#xC758;&#xB97C; &#xAC80;&#xC0C9;</span>
 $ header-typedef signal.h <span class="hljs-operator">-s</span> sigevent_t
 </code></pre>
-<pre><code class="lang-bash"><span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">dump</span></span> ()
-{
-    <span class="hljs-built_in">local</span> hname hsum lang
+<pre><code class="lang-bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">header_args_</span></span> () {
+    <span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { args=<span class="hljs-string">&quot;&quot;</span>
+        <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> args+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
+        <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
+    }
     <span class="hljs-keyword">for</span> hname; <span class="hljs-keyword">do</span> 
         <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$hname</span>&quot;</span> = <span class="hljs-string">&quot;-xc++&quot;</span> &amp;&amp; { lang=<span class="hljs-variable">$hname</span>; <span class="hljs-built_in">continue</span> ;}
         hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$hname</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
     <span class="hljs-keyword">done</span>
+}
 
+<span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">dump</span></span> ()
+{
+    <span class="hljs-built_in">local</span> hname hsum lang args
+    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
     cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed <span class="hljs-string">&apos;/^#.*&quot;&lt;built-in&gt;&quot;/,/^# [0-9]\+ &quot;/d&apos;</span>
 }
 
-<span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">function</span></span> () 
+<span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">function</span></span> ()
 {
-    <span class="hljs-built_in">local</span> hname hsum lang
-    <span class="hljs-keyword">for</span> hname; <span class="hljs-keyword">do</span> 
-        <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$hname</span>&quot;</span> = <span class="hljs-string">&quot;-xc++&quot;</span> &amp;&amp; { lang=<span class="hljs-variable">$hname</span>; <span class="hljs-built_in">continue</span> ;}
-        hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$hname</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
-    <span class="hljs-keyword">done</span>
+    <span class="hljs-built_in">local</span> hname hsum lang args
+    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
 
     cpp <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | awk <span class="hljs-string">&apos;/\yextern\s.+\w+\s*\(/&apos;</span>
 
@@ -723,11 +727,8 @@ $ header-typedef signal.h <span class="hljs-operator">-s</span> sigevent_t
 
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">macro</span></span> () 
 {
-    <span class="hljs-built_in">local</span> hname hsum lang
-    <span class="hljs-keyword">for</span> hname; <span class="hljs-keyword">do</span> 
-        <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$hname</span>&quot;</span> = <span class="hljs-string">&quot;-xc++&quot;</span> &amp;&amp; { lang=<span class="hljs-variable">$hname</span>; <span class="hljs-built_in">continue</span> ;}
-        hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$hname</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
-    <span class="hljs-keyword">done</span>
+    <span class="hljs-built_in">local</span> hname hsum lang args
+    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
 
     <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> -n <span class="hljs-string">&quot;<span class="hljs-variable">$hsum</span>&quot;</span>; <span class="hljs-keyword">then</span> 
         cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed <span class="hljs-string">&apos;/^#.*&quot;&lt;built-in&gt;&quot;/,/^# [0-9]\+ &quot;/d&apos;</span> |
@@ -740,6 +741,11 @@ $ header-typedef signal.h <span class="hljs-operator">-s</span> sigevent_t
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">typedef</span></span> () 
 {
     <span class="hljs-built_in">local</span> hname hsum opt lang search
+
+    <span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { args=<span class="hljs-string">&quot;&quot;</span>
+        <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> args+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
+        <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
+    }
 
     opt=$(getopt -o x:s: -- <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>) || <span class="hljs-built_in">return</span>
     <span class="hljs-built_in">eval</span> <span class="hljs-built_in">set</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$opt</span>&quot;</span>
