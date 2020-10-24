@@ -711,6 +711,7 @@ $ header-typedef signal.h <span class="hljs-operator">-s</span> sigevent_t
 {
     <span class="hljs-built_in">local</span> hname hsum lang args
     header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
+
     cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$lang</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed <span class="hljs-string">&apos;/^#.*&quot;&lt;built-in&gt;&quot;/,/^# [0-9]\+ &quot;/d&apos;</span>
 }
 
