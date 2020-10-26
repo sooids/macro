@@ -636,23 +636,27 @@ strictly conforming C &#xD558;&#xAC8C; &#xC791;&#xC131;&#xD560; &#xC218;&#xAC00;
 &#xB2E4;&#xC74C;&#xC744; &#xBCF4;&#xBA74; &#xB9AC;&#xB205;&#xC2A4; &#xC18C;&#xC2A4;&#xC5D0;&#xC11C; <code>linux/init.h</code> &#xD5E4;&#xB354; &#xD30C;&#xC77C;&#xC744; &#xB9E4;&#xD06C;&#xB85C; &#xD655;&#xC7A5;&#xD558;&#xB824;&#xACE0; &#xD55C; &#xAC83;&#xC778;&#xB370;
 <code>-I</code> &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; warning &#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0;&#xB9CC; <code>-isystem</code> &#xC635;&#xC158;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xBA74; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xAC83;&#xC744;
 &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ cpp <span class="hljs-operator">-d</span>D -I ~/linux/include/ -I ~/linux/arch/x86/include/generated \
-      &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;linux/init.h&gt;&quot;</span> &gt; /dev/null 
-In file included from /home/mug896/linux/include/linux/kcsan-checks.h:<span class="hljs-number">7</span>,
-                 from /home/mug896/linux/include/asm-generic/rwonce.h:<span class="hljs-number">27</span>,
-                 from /home/mug896/linux/arch/x86/include/generated/asm/rwonce.h:<span class="hljs-number">1</span>,
-                 from /home/mug896/linux/include/linux/compiler.h:<span class="hljs-number">232</span>,
-                 from /home/mug896/linux/include/linux/init.h:<span class="hljs-number">5</span>,
+<pre><code class="lang-bash">$ cpp <span class="hljs-operator">-d</span>D -nostdinc -I ./include/ -I ./include/uapi -I ./arch/x86/include/uapi \
+      -I ./arch/x86/include/generated -I ./arch/x86/include/generated/uapi \
+      &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;linux/init.h&gt;&quot;</span> &gt; /dev/null
+In file included from ./include/linux/kcsan-checks.h:<span class="hljs-number">7</span>,
+                 from ./include/asm-generic/rwonce.h:<span class="hljs-number">27</span>,
+                 from ./arch/x86/include/generated/asm/rwonce.h:<span class="hljs-number">1</span>,
+                 from ./include/linux/compiler.h:<span class="hljs-number">232</span>,
+                 from ./include/linux/init.h:<span class="hljs-number">5</span>,
                  from &lt;stdin&gt;:<span class="hljs-number">1</span>:
-/home/mug896/linux/include/linux/compiler_attributes.h:<span class="hljs-number">64</span>: warning: <span class="hljs-string">&quot;__always_inline&quot;</span> redefined
+./include/linux/compiler_attributes.h:<span class="hljs-number">64</span>: warning: <span class="hljs-string">&quot;__always_inline&quot;</span> redefined
    <span class="hljs-number">64</span> | <span class="hljs-comment">#define __always_inline                 inline __attribute__((__always_inline__))</span>
-      | 
+      |
 . . .
 --------------------------------------------------------------------------------
 
 <span class="hljs-comment"># -isystem &#xC635;&#xC158;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC2DC;&#xC2A4;&#xD15C; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xB85C; &#xC124;&#xC815;&#xD558;&#xBA74; warning &#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
-$ cpp <span class="hljs-operator">-d</span>D -isystem ~/linux/include/ -isystem ~/linux/arch/x86/include/generated \
-      &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;linux/init.h&gt;&quot;</span> &gt; /dev/null
+$ cpp <span class="hljs-operator">-d</span>D -nostdinc -isystem ./include -isystem ./include/uapi \
+          -isystem ./arch/x86/include/uapi \
+          -isystem ./arch/x86/include/generated \
+          -isystem ./arch/x86/include/generated/uapi \
+          &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;linux/init.h&gt;&quot;</span> &gt; /dev/null
 $
 </code></pre>
 <h3 id="nostdincnostdinc">-nostdinc<br>-nostdinc++</h3>
