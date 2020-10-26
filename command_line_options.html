@@ -576,13 +576,13 @@ undef &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 &#xC774;&#xC6A9;&#xD574; &#xC0C1;&#xB300; &#xACBD;&#xB85C;&#xB85C; &#xAC04;&#xB2E8;&#xD788; &#xD45C;&#xAE30;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
 &#xB450; &#xBC88;&#xC9F8; quoted &#xD615;&#xD0DC;&#xC758; &#xACBD;&#xC6B0;&#xB294; &#xD30C;&#xC77C;&#xC744; &#xCC3E;&#xC744; &#xB54C; &#xD604;&#xC7AC; &#xC18C;&#xC2A4;&#xD30C;&#xC77C;&#xACFC; &#xAC19;&#xC740; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC5D0;&#xC11C; &#xCC3E;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <p>gcc &#xC5D0; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xC2DC;&#xC2A4;&#xD15C; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xB294; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC73C;&#xB85C; &#xC870;&#xD68C;&#xD574;&#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ cpp -xc -Wp,-v /dev/null |&amp; grep -E <span class="hljs-string">&apos;^\s*/[^[:blank:]]+$&apos;</span>        <span class="hljs-comment"># C</span>
+<pre><code class="lang-bash">$ cpp -xc -Wp,-v /dev/null |&amp; grep -E <span class="hljs-string">&apos;^\s*/[^ \t]+$&apos;</span>        <span class="hljs-comment"># C</span>
  /usr/lib/gcc/x86_64-linux-gnu/<span class="hljs-number">10</span>/include
  /usr/<span class="hljs-built_in">local</span>/include
  /usr/include/x86_64-linux-gnu
  /usr/include
 
-$ cpp -xc++ -Wp,-v /dev/null |&amp; grep -E <span class="hljs-string">&apos;^\s*/[^[:blank:]]+$&apos;</span>      <span class="hljs-comment"># C++</span>
+$ cpp -xc++ -Wp,-v /dev/null |&amp; grep -E <span class="hljs-string">&apos;^\s*/[^ \t]+$&apos;</span>      <span class="hljs-comment"># C++</span>
  /usr/include/c++/<span class="hljs-number">10</span>
  /usr/include/x86_64-linux-gnu/c++/<span class="hljs-number">10</span>
  /usr/include/c++/<span class="hljs-number">10</span>/backward
