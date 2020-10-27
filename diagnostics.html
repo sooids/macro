@@ -784,17 +784,16 @@ function space(n,   r) { for( ; n &gt; 0; n-- ) r = r &quot;    &quot;; return r
         <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> args+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
         <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
     }
-    <span class="hljs-keyword">for</span> hname; <span class="hljs-keyword">do</span>
-        <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$hname</span>&quot;</span> = <span class="hljs-string">&quot;--&quot;</span> &amp;&amp; { <span class="hljs-built_in">shift</span>; opts=<span class="hljs-string">&quot; <span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-built_in">break</span> ;}
+    <span class="hljs-keyword">while</span> <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> <span class="hljs-operator">-gt</span> <span class="hljs-number">0</span>; <span class="hljs-keyword">do</span>
+        <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;--&quot;</span> &amp;&amp; { <span class="hljs-built_in">shift</span>; opts=<span class="hljs-string">&quot; <span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-built_in">break</span> ;}
         <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">${FUNCNAME[1]}</span>&quot;</span> = <span class="hljs-string">&quot;header-typedef&quot;</span> &amp;&amp; {
-            <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">${hname:0:2}</span>&quot;</span> = <span class="hljs-string">&quot;-s&quot;</span> &amp;&amp; {
-                search=<span class="hljs-variable">${hname:2}</span>
-                <span class="hljs-built_in">test</span> -z <span class="hljs-string">&quot;<span class="hljs-variable">$search</span>&quot;</span> &amp;&amp; search=<span class="hljs-operator">-s</span>
+            <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">${1:0:2}</span>&quot;</span> = <span class="hljs-string">&quot;-s&quot;</span> &amp;&amp; {
+                search=<span class="hljs-variable">${1:2}</span>
+                <span class="hljs-built_in">test</span> -z <span class="hljs-string">&quot;<span class="hljs-variable">$search</span>&quot;</span> &amp;&amp; { <span class="hljs-built_in">shift</span>; search=<span class="hljs-variable">$1</span> ;}
                 <span class="hljs-built_in">shift</span>; <span class="hljs-built_in">continue</span>
             }
-            <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$search</span>&quot;</span> = <span class="hljs-string">&quot;-s&quot;</span> &amp;&amp; { search=<span class="hljs-variable">$1</span>; <span class="hljs-built_in">shift</span>; <span class="hljs-built_in">continue</span> ;}
         }
-        hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$hname</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
+        hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$1</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
         <span class="hljs-built_in">shift</span>
     <span class="hljs-keyword">done</span>
 }
