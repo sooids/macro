@@ -667,20 +667,12 @@ $ cp /boot/config-`uname -r` ./.config
 
 <span class="hljs-comment"># net/ipv4/tcp.c &#xD30C;&#xC77C;&#xC758; &#xC804;&#xCC98;&#xB9AC; &#xACB0;&#xACFC;&#xB97C; &#xBCF4;&#xB824;&#xBA74;</span>
 $ make net/ipv4/tcp.i
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-warning: Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, 
-libelf-devel or elfutils-libelf-devel
+  . . .
   CPP     net/ipv4/tcp.i      &lt;---- &#xC804;&#xCC98;&#xB9AC; &#xC644;&#xB8CC;&#xB41C; &#xD30C;&#xC77C;
 
 <span class="hljs-comment"># arch/x86/kernel/vmlinux.lds.S &#xD30C;&#xC77C;&#xC758; &#xC804;&#xCC98;&#xB9AC; &#xACB0;&#xACFC;&#xB97C; &#xBCF4;&#xB824;&#xBA74;</span>
 $ make arch/x86/kernel/vmlinux.lds
-Makefile:<span class="hljs-number">1745</span>: warning: overriding recipe <span class="hljs-keyword">for</span> target <span class="hljs-string">&apos;arch/x86/kernel/vmlinux.lds&apos;</span>
-Makefile:<span class="hljs-number">1168</span>: warning: ignoring old recipe <span class="hljs-keyword">for</span> target <span class="hljs-string">&apos;arch/x86/kernel/vmlinux.lds&apos;</span>
-  CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-warning: Cannot use CONFIG_STACK_VALIDATION=y, please install libelf-dev, 
-libelf-devel or elfutils-libelf-devel
+  . . .
   LDS     arch/x86/kernel/vmlinux.lds      &lt;---- &#xC804;&#xCC98;&#xB9AC; &#xC644;&#xB8CC;&#xB41C; &#xD30C;&#xC77C;
 </code></pre>
 <p>&#xC2DC;&#xC2A4;&#xD15C; &#xD5E4;&#xB354;&#xB85C; &#xC124;&#xC815;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC5D0;&#xB294; <code>#pragma GCC system_header</code> &#xB97C; &#xC774;&#xC6A9;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
