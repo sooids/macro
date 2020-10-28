@@ -603,7 +603,8 @@ the entire file
 <p># <strong>endif</strong> </p>
 </blockquote>
 <p><code>#ifdef</code> &#xC9C0;&#xC2DC;&#xC790;&#xB294; &#xB2E8;&#xC21C;&#xD788; &#xD2B9;&#xC815; &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xB294;&#xC9C0; &#xD14C;&#xC2A4;&#xD2B8; &#xD558;&#xC9C0;&#xB9CC;
-<code>#if</code> &#xC9C0;&#xC2DC;&#xC790;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; C &#xC5B8;&#xC5B4;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; expression &#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;
+<code>#if</code> &#xC9C0;&#xC2DC;&#xC790;&#xB294; expression &#xC744; &#xB2E4;&#xB8F9;&#xB2C8;&#xB2E4;.
+expression &#xC5D0;&#xC11C;&#xB294; C &#xC5B8;&#xC5B4;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
 ( ++, --, &#xD3EC;&#xC778;&#xD130; &#xAD00;&#xB828;, &#xB300;&#xC785;&#xC5F0;&#xC0B0;&#xC790; &#xB4E4;&#xC740; &#xC81C;&#xC678; ).
 &#xB2E4;&#xC74C;&#xC740; <code>#if</code>,<code>#else</code> &#xC870;&#xAC74; &#xC9C0;&#xC2DC;&#xC790;&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xC120;&#xD0DD;&#xC801;&#xC73C;&#xB85C; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC815;&#xC758;&#xD558;&#xB294;
 &#xC608;&#xC778;&#xB370; <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> &#xB17C;&#xB9AC;&#xC5F0;&#xC0B0;&#xC790;, <code>&lt;</code>, <code>&gt;</code> &#xBE44;&#xAD50;&#xC5F0;&#xC0B0;&#xC790;, <code>a ? b : c</code> &#xC0BC;&#xD56D;&#xC5F0;&#xC0B0;&#xC790; &#xB4E4;&#xC774;
@@ -619,18 +620,61 @@ the entire file
 #else
 # define __GLIBC_USE_DEPRECATED_SCANF 0
 #endif
-</code></pre><p>&#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB9E4;&#xD06C;&#xB85C; &#xC0AC;&#xC6A9;, <code>0</code> &#xC740; &#xAC70;&#xC9D3;&#xACFC; &#xAC19;&#xACE0; &#xADF8; &#xC678; &#xAC12;&#xC740; &#xCC38;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.
-body &#xAC00; empty &#xC778; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xACBD;&#xC6B0;&#xB294; expression &#xC774; empty &#xAC00; &#xB418;&#xBBC0;&#xB85C; &#xC624;&#xB958;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.
+</code></pre><p>expression &#xC5D0; &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xC0AC;&#xC6A9;&#xB418;&#xBA74; &#xBA3C;&#xC800; &#xD655;&#xC7A5;&#xC774; &#xC644;&#xB8CC;&#xB41C; &#xD6C4; &#xC5F0;&#xC0B0;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.
+&#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB9E4;&#xD06C;&#xB85C; &#xC0AC;&#xC6A9;, <code>0</code> &#xC740; &#xAC70;&#xC9D3;&#xACFC; &#xAC19;&#xACE0; &#xADF8; &#xC678; &#xAC12;&#xC740; &#xCC38;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.
+body &#xAC00; empty &#xC778; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xACBD;&#xC6B0;&#xB294; expression &#xC774; empty &#xAC00; &#xB418;&#xBBC0;&#xB85C; &#xC624;&#xB958;&#xC785;&#xB2C8;&#xB2E4;.
 &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC804;&#xCC98;&#xB9AC; &#xB2E8;&#xACC4;&#xC5D0;&#xC11C;&#xB294; C/C++ &#xC5B8;&#xC5B4;&#xC758; &#xD0C0;&#xC785; &#xC815;&#xBCF4;&#xB294; &#xC54C; &#xC218; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C; sizeof &#xC5F0;&#xC0B0;&#xC790;&#xB098;
 enum &#xAC12;&#xC740; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. 
 expression &#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC12;&#xB4E4;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>integer constants</li>
 <li>character constants ( &apos;A&apos; &#xB294; 65 &#xC640; &#xAC19;&#xB2E4; )</li>
-<li>&#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB9E4;&#xD06C;&#xB85C;&#xB294; <code>0</code> &#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
-<li>expression &#xC5D0; &#xC0AC;&#xC6A9;&#xB41C; &#xB9E4;&#xD06C;&#xB85C;&#xB294; &#xBA3C;&#xC800; &#xD655;&#xC7A5;&#xC774; &#xC644;&#xB8CC;&#xB41C; &#xD6C4; &#xC5F0;&#xC0B0;&#xB429;&#xB2C8;&#xB2E4;.</li>
 <li><code>defined</code> &#xC804;&#xCC98;&#xB9AC;&#xAE30; &#xC5F0;&#xC0B0;&#xC790;&#xC758; &#xC0AC;&#xC6A9;</li>
+<li>&#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB9E4;&#xD06C;&#xB85C;&#xB294; <code>0</code> &#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>double quotes &#xC740; &#xC624;&#xB958;&#xC5D0; &#xD574;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ul>
+<pre><code class="lang-bash">$ gcpp - &lt;&lt;\@        $ gcpp - &lt;&lt;\@             $ gcpp - &lt;&lt;\@        $ gcpp -Dfoo - &lt;&lt;\@
+<span class="hljs-comment">#if foo              #define foo               #define foo bar      #if foo</span>
+<span class="hljs-comment">#define NUM 100      #if foo                   #if foo              #define NUM 200</span>
+<span class="hljs-comment">#endif               #define NUM 200           #define NUM 200      #endif</span>
+                     <span class="hljs-comment">#endif                    #endif</span>
+value: NUM                                                          value: NUM
+@                    value: NUM                value: NUM           @
+                     @                         @
+value: NUM           &lt;stdin&gt;:<span class="hljs-number">2</span>:<span class="hljs-number">8</span>: error:                            value: <span class="hljs-number">200</span>
+                     <span class="hljs-comment">#if with no expression    value: NUM</span>
+                                               <span class="hljs-comment"># foo &#xAC00; bar &#xB85C; &#xD655;&#xC7A5;&#xB418;&#xACE0;</span>
+                     value: NUM                <span class="hljs-comment"># bar &#xB294; &#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740;</span>
+                                               <span class="hljs-comment"># &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xB41C;&#xB2E4;.</span>
+----------------------------------------------------------------------------------
+
+$ gcpp - &lt;&lt;\@                     $ gcpp - &lt;&lt;\@                  $ gcpp - &lt;&lt;\@ 
+<span class="hljs-comment">#define foo                       #define foo (1 - 1)            #define foo (1 + 1)</span>
+<span class="hljs-comment">#if defined(foo)                  #if foo                        #if foo</span>
+<span class="hljs-comment">#define NUM 200                   #define NUM 200                #define NUM 100</span>
+<span class="hljs-comment">#endif                            #endif                         #endif</span>
+
+value: NUM                        value: NUM                     value: NUM
+@                                 @                              @
+
+value: <span class="hljs-number">200</span>                        value: NUM                     value: <span class="hljs-number">100</span>
+
+-------------------------------------------------------------------------------------
+
+$ gcpp - &lt;&lt;\@                     $ gcpp - &lt;&lt;\@                   $ gcpp - &lt;&lt;\@
+<span class="hljs-comment">#define foo &quot;bar&quot;                 #define foo &apos;bar&apos;               #define foo &apos;b&apos;</span>
+<span class="hljs-comment">#if foo                           #if foo                         #if foo</span>
+<span class="hljs-comment">#define NUM 200                   #define NUM 200                 #define NUM 200</span>
+<span class="hljs-comment">#endif                            #endif                          #endif</span>
+
+value: NUM                        value: NUM                      value: NUM
+@                                 @                               @
+&lt;stdin&gt;:<span class="hljs-number">1</span>:<span class="hljs-number">13</span>: error:              &lt;stdin&gt;:<span class="hljs-number">2</span>:<span class="hljs-number">5</span>: warning:
+token <span class="hljs-string">&quot;&quot;</span>bar<span class="hljs-string">&quot;&quot;</span> is not valid        multi-character character       value: <span class="hljs-number">200</span>
+<span class="hljs-keyword">in</span> preprocessor expressions       constant [-Wmultichar]
+
+value: NUM                        value: <span class="hljs-number">200</span>
+</code></pre>
 <h4 id="if-0--alwaysfalse-"><code>#if 0</code> ( always-false )</h4>
 <p>&#xC18C;&#xC2A4;&#xCF54;&#xB4DC;&#xC758; &#xD2B9;&#xC815; &#xC601;&#xC5ED;&#xC744; &#xC0AD;&#xC81C;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xB098;&#xC911;&#xC5D0; &#xCC38;&#xC870;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB0A8;&#xACA8;&#xB193;&#xC73C;&#xB824; &#xD560; &#xACBD;&#xC6B0;,
 <code>/*...*/</code> ( block comment ) &#xB294; nesting &#xD574;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xB294;&#xB370;
