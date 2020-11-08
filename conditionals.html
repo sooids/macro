@@ -633,48 +633,47 @@ expression &#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &
 <li>&#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB9E4;&#xD06C;&#xB85C;&#xB294; <code>0</code> &#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 <li>double quotes &#xC740; &#xC624;&#xB958;&#xC5D0; &#xD574;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ul>
-<pre><code class="lang-bash">$ gcpp - &lt;&lt;\@        $ gcpp - &lt;&lt;\@             $ gcpp - &lt;&lt;\@        $ gcpp -Dfoo - &lt;&lt;\@
-<span class="hljs-comment">#if foo              #define foo               #define foo bar      #if foo</span>
-<span class="hljs-comment">#define NUM 100      #if foo                   #if foo              #define NUM 200</span>
-<span class="hljs-comment">#endif               #define NUM 200           #define NUM 200      #endif</span>
-                     <span class="hljs-comment">#endif                    #endif</span>
+<pre><code>$ gcpp - &lt;&lt;\@        $ gcpp - &lt;&lt;\@             $ gcpp - &lt;&lt;\@        $ gcpp -Dfoo - &lt;&lt;\@
+#if foo              #define foo               #define foo bar      #if foo
+#define NUM 100      #if foo                   #if foo              #define NUM 200
+#endif               #define NUM 200           #define NUM 200      #endif
+                     #endif                    #endif
 value: NUM                                                          value: NUM
 @                    value: NUM                value: NUM           @
                      @                         @
-value: NUM           &lt;stdin&gt;:<span class="hljs-number">2</span>:<span class="hljs-number">8</span>: error:                            value: <span class="hljs-number">200</span>
-                     <span class="hljs-comment">#if with no expression    value: NUM</span>
-                                               <span class="hljs-comment"># foo &#xAC00; bar &#xB85C; &#xD655;&#xC7A5;&#xB418;&#xACE0;</span>
-                     value: NUM                <span class="hljs-comment"># bar &#xB294; &#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740;</span>
-                                               <span class="hljs-comment"># &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xB41C;&#xB2E4;.</span>
+value: NUM           &lt;stdin&gt;:2:8: error:                            value: 200
+                     #if with no expression    value: NUM
+# &#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740;                                   # foo &#xAC00; bar &#xB85C; &#xD655;&#xC7A5;&#xB418;&#xACE0;
+# &#xB9E4;&#xD06C;&#xB85C;&#xB294;             value: NUM                # bar &#xB294; &#xC815;&#xC758;&#xB418;&#xC9C0; &#xC54A;&#xC740;
+# 0 &#xACFC; &#xAC19;&#xB2E4;.                                     # &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xB41C;&#xB2E4;.
 ----------------------------------------------------------------------------------
 
 $ gcpp - &lt;&lt;\@                     $ gcpp - &lt;&lt;\@                  $ gcpp - &lt;&lt;\@ 
-<span class="hljs-comment">#define foo                       #define foo (1 - 1)            #define foo (1 + 1)</span>
-<span class="hljs-comment">#if defined(foo)                  #if foo                        #if foo</span>
-<span class="hljs-comment">#define NUM 200                   #define NUM 200                #define NUM 100</span>
-<span class="hljs-comment">#endif                            #endif                         #endif</span>
+#define foo                       #define foo (1 - 1)            #define foo (1 + 1)
+#if defined(foo)                  #if foo                        #if foo
+#define NUM 200                   #define NUM 200                #define NUM 100
+#endif                            #endif                         #endif
 
 value: NUM                        value: NUM                     value: NUM
 @                                 @                              @
 
-value: <span class="hljs-number">200</span>                        value: NUM                     value: <span class="hljs-number">100</span>
+value: 200                        value: NUM                     value: 100
 -------------------------------------------------------------------------------------
 
 $ gcpp - &lt;&lt;\@                     $ gcpp - &lt;&lt;\@                   $ gcpp - &lt;&lt;\@
-<span class="hljs-comment">#define foo &quot;bar&quot;                 #define foo &apos;bar&apos;               #define foo &apos;b&apos;</span>
-<span class="hljs-comment">#if foo                           #if foo                         #if foo</span>
-<span class="hljs-comment">#define NUM 200                   #define NUM 200                 #define NUM 200</span>
-<span class="hljs-comment">#endif                            #endif                          #endif</span>
+#define foo &quot;bar&quot;                 #define foo &apos;bar&apos;               #define foo &apos;b&apos;
+#if foo                           #if foo                         #if foo
+#define NUM 200                   #define NUM 200                 #define NUM 200
+#endif                            #endif                          #endif
 
 value: NUM                        value: NUM                      value: NUM
 @                                 @                               @
-&lt;stdin&gt;:<span class="hljs-number">1</span>:<span class="hljs-number">13</span>: error:              &lt;stdin&gt;:<span class="hljs-number">2</span>:<span class="hljs-number">5</span>: warning:
-token <span class="hljs-string">&quot;&quot;</span>bar<span class="hljs-string">&quot;&quot;</span> is not valid        multi-character character       value: <span class="hljs-number">200</span>
-<span class="hljs-keyword">in</span> preprocessor expressions       constant [-Wmultichar]
+&lt;stdin&gt;:1:13: error:              &lt;stdin&gt;:2:5: warning:
+token &quot;&quot;bar&quot;&quot; is not valid        multi-character character       value: 200
+in preprocessor expressions       constant [-Wmultichar]
 
-value: NUM                        value: <span class="hljs-number">200</span>
-</code></pre>
-<h4 id="if-0--alwaysfalse-"><code>#if 0</code> ( always-false )</h4>
+value: NUM                        value: 200
+</code></pre><h4 id="if-0--alwaysfalse-"><code>#if 0</code> ( always-false )</h4>
 <p>&#xC18C;&#xC2A4;&#xCF54;&#xB4DC;&#xC758; &#xD2B9;&#xC815; &#xC601;&#xC5ED;&#xC744; &#xC0AD;&#xC81C;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xB098;&#xC911;&#xC5D0; &#xCC38;&#xC870;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB0A8;&#xACA8;&#xB193;&#xC73C;&#xB824; &#xD560; &#xACBD;&#xC6B0;,
 <code>/*...*/</code> ( block comment ) &#xB294; nesting &#xD574;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xB294;&#xB370;
 &#xC774;&#xB54C; <code>#if 0</code> &#xC744; &#xD65C;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
