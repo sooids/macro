@@ -835,11 +835,11 @@ __ATTR() &#xB9E4;&#xD06C;&#xB85C;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB29
 &#xC774;&#xAC83;&#xB3C4; &#xB9AC;&#xB205;&#xC2A4; &#xCEE4;&#xB110;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xACE0; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC778;&#xB370;,
 &#xC774; &#xBC29;&#xBC95;&#xC740; &#xD655;&#xC7A5; &#xACB0;&#xACFC;&#xAC00; statement &#xAC00; &#xB418;&#xBBC0;&#xB85C; &#xB300;&#xC785; &#xC5F0;&#xC0B0;&#xC5D0;&#xC11C;&#xB294; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code>$ gcc -c -xc - &lt;&lt;\@
-#define compiletime_assert(condition, msg)                                   \
-    do {                                                                     \
-        extern void _compiletime_assert(void) __attribute__((error(#msg)));  \
-        if (!(condition))                                                    \
-            _compiletime_assert();                                           \
+#define compiletime_assert(condition, msg)                                      \
+    do {                                                                        \
+        extern void _compiletime_assert(void) __attribute__(( error( #msg )));  \
+        if (!(condition))                                                       \
+            _compiletime_assert();                                              \
     } while (0)
 
 int main() { compiletime_assert(2 &lt; 1, &quot;2 is definitely bigger than 1&quot;); }
