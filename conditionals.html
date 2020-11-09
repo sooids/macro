@@ -751,7 +751,10 @@ bitfield width &#xAC12;&#xC73C;&#xB85C; 0 &#xC740; &#xC624;&#xB958;&#xAC00; &#xB
 -1 &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xCEF4;&#xD30C;&#xC77C; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC5EC; &#xBE4C;&#xB4DC;&#xAC00; &#xC911;&#xB2E8;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.
 </code></pre><p><a href="https://elixir.bootlin.com/linux/v5.9.6/source/include/linux/kernel.h#L1029" target="_blank">VERIFY_OCTAL_PERMISSIONS(perms)</a>
 &#xB9E4;&#xD06C;&#xB85C;&#xB294; <code>BUILD_BUG_ON_ZERO(e)</code> &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC778;&#xC218;&#xB85C; &#xC8FC;&#xC5B4;&#xC9C4; permission &#xAC12;&#xC774; &#xD2B9;&#xC815; &#xC870;&#xAC74;&#xC744;
-&#xB9CC;&#xC871;&#xD558;&#xB294;&#xC9C0; &#xCCB4;&#xD06C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+&#xB9CC;&#xC871;&#xD558;&#xB294;&#xC9C0; &#xCCB4;&#xD06C;&#xD569;&#xB2C8;&#xB2E4;.
+<code>BUILD_BUG_ON_ZERO(e)</code> &#xB9E4;&#xD06C;&#xB85C;&#xC5D0;&#xC11C; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xC744; &#xACBD;&#xC6B0; &#xD655;&#xC7A5; &#xAC12;&#xC740; <code>0</code> &#xACFC; &#xAC19;&#xAC8C;&#xB418;&#xBBC0;&#xB85C;
+&#xBAA8;&#xB4E0; &#xD14C;&#xC2A4;&#xD2B8;&#xAC00; &#xD1B5;&#xACFC;&#xD558;&#xBA74; <code>VERIFY_OCTAL_PERMISSIONS(perms)</code> &#xB9E4;&#xD06C;&#xB85C;&#xC758; &#xCD5C;&#xC885; &#xD655;&#xC7A5; &#xAC12;&#xC740;
+&#xC804;&#xB2EC;&#xB41C; &#xC778;&#xC218; &#xADF8;&#xB300;&#xB85C; <code>(perms)</code> &#xC774; &#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code>linux/include/linux/kernel.h &#xCC38;&#xC870;
 
 $ gcc -xc -fsyntax-only - &lt;&lt;\@
@@ -792,7 +795,7 @@ $ gcc -xc -fsyntax-only - &lt;&lt;\@
          BUILD_BUG_ON_ZERO((perms) &amp; 2) +                                       \
          (perms))
 
-int X = VERIFY_OCTAL_PERMISSIONS(0644);       // 0644 &#xB294; OK 
+int X = VERIFY_OCTAL_PERMISSIONS(0644);       // 0644 &#xB294; OK
 @
 
 OK
