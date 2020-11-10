@@ -678,7 +678,7 @@ foobar ()                  // &#xB9E4;&#xD06C;&#xB85C; &#xD655;&#xC7A5;&#xC774; 
 &#xADF8;&#xB7EC;&#xBA74; &#xCD5C;&#xC885; &#xACB0;&#xACFC;&#xAC00; &#xB2E4;&#xC2DC; 100 &#xC774; &#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code>$ gcpp - &lt;&lt;\@
 #define NOP()
-#define EVAL(...) __VA_ARGS__       // main scan &#xC5D0;&#xC11C; &#xD655;&#xC7A5;&#xC744; &#xC704;&#xD55C; EVAL &#xB9E4;&#xD06C;&#xB85C; &#xC815;&#xC758;
+#define EVAL(...) __VA_ARGS__       // main scan &#xD655;&#xC7A5;&#xC744; &#xC704;&#xD55C; EVAL &#xB9E4;&#xD06C;&#xB85C; &#xC815;&#xC758;
 #define foobar() 100
 #define FOO( name1, name2 ) name1 ## name2 NOP() ()
 
@@ -799,7 +799,7 @@ COUNT_ARGS( CCC(111,222,333) )
 </code></pre><p>&#xCCAB; &#xBC88;&#xC9F8; &#xBC29;&#xBC95;&#xC740; indirection &#xC744; &#xC774;&#xC6A9;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.
 &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD638;&#xCD9C; &#xB2E8;&#xACC4;&#xB97C; &#xD55C; &#xB2E8;&#xACC4; &#xB354; &#xCD94;&#xAC00;&#xD558;&#xBA74; <code>COUNT_ARGS(X)</code> &#xB9E4;&#xD06C;&#xB85C;&#xC5D0;&#xC11C;&#xB294; <code>##</code> &#xC5F0;&#xC0B0;&#xC790;&#xAC00;
 &#xC0AC;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>CCC(111,222,333)</code> &#xB9E4;&#xD06C;&#xB85C;&#xC758; &#xD655;&#xC7A5; &#xACB0;&#xACFC;&#xAC00; &#xC0AC;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
-&#xB9E4;&#xAC1C;&#xBCC0;&#xC218; <code>X</code> &#xC758; &#xAC12;&#xC774; &#xD655;&#xC7A5; &#xACB0;&#xACFC;&#xC778; <code>111,222,333</code> &#xC73C;&#xB85C; &#xCE58;&#xD658;&#xB418;&#xBA74; 
+&#xB9E4;&#xAC1C;&#xBCC0;&#xC218; <code>X</code> &#xC758; &#xAC12;&#xC774; &#xD655;&#xC7A5; &#xACB0;&#xACFC;&#xC778; <code>111,222,333</code> &#xB85C; &#xCE58;&#xD658;&#xB418;&#xBA74;
  <code>_COUNT_ARGS(111,222,333)</code> &#xAC00; &#xB418;&#xACE0; main scan &#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; &#xD655;&#xC7A5; &#xACB0;&#xACFC;&#xB85C; <code>3</code> &#xC774;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code>$ gcpp - &lt;&lt;\@
 #define __COUNT_ARGS(_0, _1, _2, _3, _4, _5, _n, X...) _n
