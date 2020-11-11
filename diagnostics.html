@@ -806,9 +806,9 @@ function space(n,   r) { for( ; n &gt; 0; n-- ) r = r &quot;    &quot;; return r
 </code></pre>
 <h1 id="3-">3 .</h1>
 <p><code>ptrdiff_t</code> &#xB098; <code>size_t</code> &#xAC19;&#xC740; &#xD0C0;&#xC785;&#xC774; &#xC5B4;&#xB290; &#xD5E4;&#xB354; &#xD30C;&#xC77C;&#xC5D0; &#xC788;&#xB294;&#xC9C0;&#xB294; &#xC5B4;&#xB5BB;&#xAC8C; &#xC54C; &#xC218; &#xC788;&#xC744;&#xAE4C;&#xC694;?</p>
-<pre><code class="lang-bash">$ grep -Irw <span class="hljs-string">&apos;ptrdiff_t;&apos;</span> /usr/{include,lib}
+<pre><code class="lang-bash">$ grep -Irw <span class="hljs-string">&apos;ptrdiff_t\s*;&apos;</span> /usr/{include,lib}
 . . .
-$ grep -Irw <span class="hljs-string">&apos;size_t;&apos;</span> /usr/{include,lib}
+$ grep -Irw <span class="hljs-string">&apos;size_t\s*;&apos;</span> /usr/{include,lib}
 . . .
 </code></pre>
 
