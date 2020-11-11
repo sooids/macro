@@ -658,6 +658,26 @@ call_with_1 (twice)     ----&gt;  twice(1) &#xB85C; &#xD655;&#xC7A5;  ----&gt;  
 @
 
 (2 * (1))
+</code></pre><p>/usr/include/x86_64-linux-gnu/sys/select.h &#xC5D0; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xB9E4;&#xD06C;&#xB85C;&#xB85C;
+<code>FD_SET(foo, $bar)</code> &#xB294; &#xD130;&#xBBF8;&#xB110; &#xD1A0;&#xD070;&#xC774; &#xB098;&#xC62C; &#xB54C;&#xAE4C;&#xC9C0; &#xC5F0;&#xC774;&#xC5B4;&#xC11C; &#xD655;&#xC7A5;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
+<pre><code>$ gcpp - &lt;&lt;\@
+#define FD_SET(fd,fdsetp) __FD_SET (fd, fdsetp)
+#define __FD_SET(d,s) ((void) (__FDS_BITS (s)[__FD_ELT(d)] |= __FD_MASK(d)))
+#define __FDS_BITS(set) ((set)-&gt;__fds_bits)
+#define __FD_ELT(d) ((d) / __NFDBITS)
+#define __FD_MASK(d) ((__fd_mask) (1UL &lt;&lt; ((d) % __NFDBITS)))
+#define __NFDBITS (8 * (int) sizeof (__fd_mask))
+// typedef long int __fd_mask;
+// typedef struct
+// {
+//     __fd_mask __fds_bits[1024 / (8 * (int) sizeof (__fd_mask))];
+// } fd_set;
+
+FD_SET(foo, &amp;bar);     // fd foo &#xB97C; fd_set bar &#xC5D0; &#xB354;&#xD558;&#xB294; &#xC5ED;&#xD560;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.
+@
+
+((void) (((&amp;bar)-&gt;__fds_bits)[((foo) / (8 * (int) sizeof (__fd_mask)))] |= ((__fd_mask) 
+(1UL &lt;&lt; ((foo) % (8 * (int) sizeof (__fd_mask)))))));
 </code></pre><h4 id="statement-&#xC758;-&#xD2B9;&#xC815;-&#xBD80;&#xBD84;&#xB9CC;-&#xB9E4;&#xD06C;&#xB85C;&#xB85C;-&#xC815;&#xC758;&#xD574;-&#xC0AC;&#xC6A9;&#xD560;-&#xC218;&#xB3C4;-&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;">Statement &#xC758; &#xD2B9;&#xC815; &#xBD80;&#xBD84;&#xB9CC; &#xB9E4;&#xD06C;&#xB85C;&#xB85C; &#xC815;&#xC758;&#xD574; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</h4>
 <pre><code>$ gcpp - &lt;&lt;\@
 #define foo(file) fprintf (file, &quot;%s %d&quot;,
