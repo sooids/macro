@@ -658,7 +658,7 @@ call_with_1 (twice)     ----&gt;  twice(1) &#xB85C; &#xD655;&#xC7A5;  ----&gt;  
 @
 
 (2 * (1))
-</code></pre><p>/usr/include/x86_64-linux-gnu/sys/select.h &#xC5D0; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xB9E4;&#xD06C;&#xB85C;&#xB85C;
+</code></pre><p><code>#include &lt;sys/select.h&gt;</code> &#xC5D0; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xB9E4;&#xD06C;&#xB85C;&#xB85C;
 <code>FD_SET(foo, $bar)</code> &#xB294; &#xD130;&#xBBF8;&#xB110; &#xD1A0;&#xD070;&#xC774; &#xB098;&#xC62C; &#xB54C;&#xAE4C;&#xC9C0; &#xC5F0;&#xC774;&#xC5B4;&#xC11C; &#xD655;&#xC7A5;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 <pre><code>$ gcpp - &lt;&lt;\@
 #define FD_SET(fd,fdsetp) __FD_SET (fd, fdsetp)
