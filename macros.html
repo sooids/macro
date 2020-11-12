@@ -864,11 +864,18 @@ extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
 <span class="hljs-comment">#endif</span>
 . . .
 
-$ cpp &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;stdlib.h&gt;&quot;</span> | grep qsort_r
-$
+$ grep -P -C1 <span class="hljs-string">&apos;#[ \t]+define[ \t]+__USE_GNU&apos;</span> /usr/include/features.h 
+<span class="hljs-comment">#ifdef  _GNU_SOURCE</span>
+<span class="hljs-comment"># define __USE_GNU      1</span>
+<span class="hljs-comment">#endif</span>
 
 <span class="hljs-comment"># _GNU_SOURCE &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xC815;&#xC758;&#xB418;&#xBA74; qsort_r &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</span>
-$ cpp -D_GNU_SOURCE &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;stdlib.h&gt;&quot;</span> | grep qsort_r
+
+$ cpp &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;stdlib.h&gt;&quot;</span> | grep qsort
+extern void qsort (void *__base, size_t __nmemb, size_t __size,
+
+$ cpp -D_GNU_SOURCE &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;stdlib.h&gt;&quot;</span> | grep qsort
+extern void qsort (void *__base, size_t __nmemb, size_t __size,
 extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
 </code></pre>
 
