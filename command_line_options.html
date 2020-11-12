@@ -559,10 +559,19 @@
                     
                         <h1 id="commandline-options">Command-line options</h1>
 <h3 id="d--u">-D , -U</h3>
-<p>&#xBA85;&#xB839; &#xB77C;&#xC778;&#xC5D0;&#xC11C;&#xB3C4; <code>-D</code> &#xC635;&#xC158;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC815;&#xC758;&#xD574; &#xC804;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
+<p>&#xBA85;&#xB839; &#xB77C;&#xC778;&#xC5D0;&#xC11C;&#xB3C4; <code>-D</code> &#xC635;&#xC158;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
+<code>=</code> &#xB97C; &#xC774;&#xC6A9;&#xD574; &#xAC12;&#xC744; &#xB530;&#xB85C; &#xC815;&#xC758;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; <code>1</code> &#xB85C; &#xC815;&#xC758;&#xB429;&#xB2C8;&#xB2E4;.
 <code>-U</code> &#xC635;&#xC158;&#xC740; predefined &#xB9E4;&#xD06C;&#xB85C;&#xB098; &#xC774;&#xC804;&#xC5D0; <code>-D</code> &#xC635;&#xC158;&#xC73C;&#xB85C; &#xC815;&#xC758;&#xD55C; &#xB9E4;&#xD06C;&#xB85C;&#xB97C;
 undef &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ gcc -D foo -D bar=<span class="hljs-number">200</span> ...
+<pre><code class="lang-bash">$ gcpp -D __foo -D __bar=<span class="hljs-number">200</span> - &lt;&lt;\@
+<span class="hljs-comment">#ifdef __foo</span>
+<span class="hljs-string">&quot;__foo is : &quot;</span> __foo
+<span class="hljs-string">&quot;__bar is : &quot;</span> __bar
+<span class="hljs-comment">#endif</span>
+@
+
+<span class="hljs-string">&quot;__foo is : &quot;</span> <span class="hljs-number">1</span>              <span class="hljs-comment"># __foo &#xAC12;&#xC740; 1 &#xC774; &#xB41C;&#xB2E4;.</span>
+<span class="hljs-string">&quot;__bar is : &quot;</span> <span class="hljs-number">200</span>
 </code></pre>
 <h3 id="include-fileimacros-file">-include <em>file</em><br>-imacros <em>file</em></h3>
 <p>&#xC774; &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC18C;&#xC2A4;&#xD30C;&#xC77C;&#xC758; &#xC81C;&#xC77C;&#xC704;&#xC5D0; <code>#include &quot;file&quot;</code> &#xC744; &#xB123;&#xB294; &#xAC83;&#xACFC; &#xAC19;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;.
