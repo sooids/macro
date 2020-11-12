@@ -734,7 +734,7 @@ $ header-macro iostream -- -xc++
     header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
 
     cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed -En <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/\bextern\s.+\w+\s*\(/{ :X&apos;</span> \
-        <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/;/{ s#\s*;#;#; bY}&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/\{/{ s#\n?\{.*# \{ ...#; bY}&apos;</span> \
+        <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/;/{ s#\s*;#;#; bY}&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/\{/{ s#\s*\{.*# \{ ...#; bY}&apos;</span> \
         <span class="hljs-operator">-e</span> <span class="hljs-string">&apos; N; bX; :Y s/\n+/\n/p }&apos;</span>
 
     cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed <span class="hljs-string">&apos;/^# 1 &quot;&lt;stdin&gt;&quot;/,/^# 1 &quot;&lt;stdin&gt;&quot;/d&apos;</span> |
