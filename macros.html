@@ -596,6 +596,16 @@ $ gcpp - &lt;&lt;\@
 &apos;FOO is: &apos; 123
 
 &quot;FOO is: &quot; FOO          # &#xB9E4;&#xD06C;&#xB85C; &#xC815;&#xC758;&#xAC00; &#xC0AD;&#xC81C;&#xB418;&#xC5B4; &#xADF8;&#xB300;&#xB85C; FOO &#xAC00; &#xB41C;&#xB2E4;.
+</code></pre><pre><code>/usr/include/features.h
+
+#ifdef _GNU_SOURCE
+# undef  _ISOC95_SOURCE
+# define _ISOC95_SOURCE    1
+# undef  _ISOC99_SOURCE
+# define _ISOC99_SOURCE    1
+# undef  _ISOC11_SOURCE
+# define _ISOC11_SOURCE    1
+. . .
 </code></pre><h4 id="&#xB9E4;&#xD06C;&#xB85C;-&#xC774;&#xB984;-&#xC791;&#xC131;&#xBC95;">&#xB9E4;&#xD06C;&#xB85C; &#xC774;&#xB984; &#xC791;&#xC131;&#xBC95;</h4>
 <p>&#xB9E4;&#xD06C;&#xB85C; &#xC774;&#xB984;&#xC740; C/C++ &#xC2DD;&#xBCC4;&#xC790; ( identifiers ) &#xB97C; &#xB9CC;&#xB4DC;&#xB294; &#xB8F0;&#xC744; &#xB530;&#xB985;&#xB2C8;&#xB2E4;.
 &#xADF8;&#xB7EC;&#xB2C8;&#xAE4C; &#xC54C;&#xD30C;&#xBCB3;, &#xC22B;&#xC790;, <code>_</code> &#xB9CC; &#xC0AC;&#xC6A9;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xACE0; &#xB9E8; &#xC55E;&#xC5D0;&#xB294; &#xC22B;&#xC790;&#xAC00; &#xC62C; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.
@@ -827,7 +837,41 @@ BUFSIZE
 #define FOUR ( 2+2 )           // ( , 2+2 , )
 #define FOUR (2 * 2)           // (2 , * , 2)
 #define FOUR() (2 + 2)         // &#xAC19;&#xC740; &#xC774;&#xB984;&#xC758; function-like &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xB3D9;&#xC2DC;&#xC5D0; &#xC815;&#xC758;&#xD560; &#xC218; &#xC5C6;&#xB2E4;.
+</code></pre><h4 id="gcc-&#xBA85;&#xB839;-&#xB77C;&#xC778;&#xC5D0;&#xC11C;&#xB3C4;-&#xB9E4;&#xD06C;&#xB85C;&#xB97C;-&#xC815;&#xC758;&#xD560;-&#xC218;-&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;">gcc &#xBA85;&#xB839; &#xB77C;&#xC778;&#xC5D0;&#xC11C;&#xB3C4; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</h4>
+<p>&#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC815;&#xC758;&#xD560; &#xB54C;&#xB294; <code>-D</code> &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; <code>=</code> &#xB97C; &#xC774;&#xC6A9;&#xD574; &#xAC12;&#xC744; &#xC9C0;&#xC815;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74;
+&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; <code>1</code> &#xB85C; &#xC815;&#xC758;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ gcpp -D __foo -D __bar=<span class="hljs-number">200</span> - &lt;&lt;\@
+<span class="hljs-comment">#ifdef __foo</span>
+<span class="hljs-string">&quot;__foo is : &quot;</span> __foo
+<span class="hljs-string">&quot;__bar is : &quot;</span> __bar
+<span class="hljs-comment">#endif</span>
+@
+
+<span class="hljs-string">&quot;__foo is : &quot;</span> <span class="hljs-number">1</span>              <span class="hljs-comment"># __foo &#xAC12;&#xC740; 1 &#xC774; &#xB41C;&#xB2E4;.</span>
+<span class="hljs-string">&quot;__bar is : &quot;</span> <span class="hljs-number">200</span>
 </code></pre>
+<p>C standard library &#xD5E4;&#xB354;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xB54C; <code>_GNU_SOURCE</code> &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC815;&#xC758;&#xD558;&#xBA74; 
+gnu &#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xB418;&#xB294; &#xAC01;&#xC885; nonstandard &#xD655;&#xC7A5; &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;
+( /usr/include/features.h &#xD30C;&#xC77C; &#xCC38;&#xC870; ).</p>
+<pre><code class="lang-bash">$ cat /usr/include/stdlib.h
+. . .
+extern void qsort (void *__base, size_t __nmemb, size_t __size,
+           __compar_fn_t __compar) __nonnull ((<span class="hljs-number">1</span>, <span class="hljs-number">4</span>));
+<span class="hljs-comment">#ifdef __USE_GNU</span>
+extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+             __compar_d_fn_t __compar, void *__arg)
+  __nonnull ((<span class="hljs-number">1</span>, <span class="hljs-number">4</span>));
+<span class="hljs-comment">#endif</span>
+. . .
+
+$ cpp &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;stdlib.h&gt;&quot;</span> | grep qsort_r
+$
+
+<span class="hljs-comment"># _GNU_SOURCE &#xB9E4;&#xD06C;&#xB85C;&#xAC00; &#xC815;&#xC758;&#xB418;&#xC5B4;&#xC57C; qsort_r &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</span>
+$ cpp -D_GNU_SOURCE &lt;&lt;&lt; <span class="hljs-string">&quot;#include &lt;stdlib.h&gt;&quot;</span> | grep qsort_r
+extern void qsort_r (void *__base, size_t __nmemb, size_t __size,
+</code></pre>
+
                     
                     </section>
                 
