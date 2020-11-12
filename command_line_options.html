@@ -565,13 +565,13 @@
 undef &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ gcpp -D __foo -D __bar=<span class="hljs-number">200</span> - &lt;&lt;\@
 <span class="hljs-comment">#ifdef __foo</span>
-<span class="hljs-string">&quot;__foo is : &quot;</span> __foo
-<span class="hljs-string">&quot;__bar is : &quot;</span> __bar
+<span class="hljs-string">&quot;__foo&quot;</span> is : __foo
+<span class="hljs-string">&quot;__bar&quot;</span> is : __bar
 <span class="hljs-comment">#endif</span>
 @
 
-<span class="hljs-string">&quot;__foo is : &quot;</span> <span class="hljs-number">1</span>              <span class="hljs-comment"># __foo &#xAC12;&#xC740; 1 &#xC774; &#xB41C;&#xB2E4;.</span>
-<span class="hljs-string">&quot;__bar is : &quot;</span> <span class="hljs-number">200</span>
+<span class="hljs-string">&quot;__foo&quot;</span> is : <span class="hljs-number">1</span>              <span class="hljs-comment"># __foo &#xAC12;&#xC740; 1 &#xC774; &#xB41C;&#xB2E4;.</span>
+<span class="hljs-string">&quot;__bar&quot;</span> is : <span class="hljs-number">200</span>
 </code></pre>
 <h3 id="include-fileimacros-file">-include <em>file</em><br>-imacros <em>file</em></h3>
 <p>&#xC774; &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC18C;&#xC2A4;&#xD30C;&#xC77C;&#xC758; &#xC81C;&#xC77C;&#xC704;&#xC5D0; <code>#include &quot;file&quot;</code> &#xC744; &#xB123;&#xB294; &#xAC83;&#xACFC; &#xAC19;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;.
