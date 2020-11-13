@@ -740,7 +740,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
         <span class="hljs-operator">-e</span> <span class="hljs-string">&apos; b }; s/^/\n/; h&apos;</span>
     <span class="hljs-built_in">echo</span>
     cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> |
-    sed -En <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/^# 1 &quot;&lt;stdin&gt;&quot;/,/^# 1 &quot;&lt;stdin&gt;&quot;/d&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/#define\s+\w+\(/p&apos;</span> | sort -u
+    sed -En <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/^# 1 &quot;&lt;stdin&gt;&quot;/,/^# 1 &quot;&lt;stdin&gt;&quot;/d&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/#\s*define\s+\w+\(/p&apos;</span> | sort -u
 }
 
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">macro</span></span> () 
@@ -754,7 +754,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
             sed -n <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;1,/\a/d&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/^# [0-9]\+ &quot;&lt;stdin&gt;&quot;/d&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;H&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;${x; s/\n//gp}&apos;</span>
         <span class="hljs-keyword">else</span>
             cpp <span class="hljs-operator">-d</span>D <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> |
-            sed -En <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/^# 1 &quot;&lt;stdin&gt;&quot;/,/^# 1 &quot;&lt;stdin&gt;&quot;/d&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/#define/p&apos;</span> | sort -u
+            sed -En <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/^# 1 &quot;&lt;stdin&gt;&quot;/,/^# 1 &quot;&lt;stdin&gt;&quot;/d&apos;</span> <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/#\s*define/p&apos;</span> | sort -u
         <span class="hljs-keyword">fi</span>
     <span class="hljs-keyword">else</span>
         cpp <span class="hljs-operator">-d</span>M <span class="hljs-variable">$opts</span> /dev/null | sort
