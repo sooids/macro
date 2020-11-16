@@ -765,7 +765,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
 {
     <span class="hljs-built_in">local</span> hname hsum opts args
     header_args_ <span class="hljs-variable">$@</span>
-    cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed -En <span class="hljs-string">&apos;/^\s*enum|enum\s*$/,/}[^;]*;/{ /^\s*$/!p }&apos;</span>
+    cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed -En <span class="hljs-string">&apos;/^\s*(typedef\s+)?enum/,/}[^;]*;/{ /^\s*$/!p }&apos;</span>
 }
 
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">typedef</span></span> () 
