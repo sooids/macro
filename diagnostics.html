@@ -761,6 +761,13 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
     <span class="hljs-keyword">fi</span>
 }
 
+<span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">enum</span></span> () 
+{
+    <span class="hljs-built_in">local</span> hname hsum opts args
+    header_args_ <span class="hljs-variable">$@</span>
+    cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> | sed -En <span class="hljs-string">&apos;/^\s*enum|enum\s*$/,/}[^;]*;/{ /^\s*$/!p }&apos;</span>
+}
+
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">typedef</span></span> () 
 {
     <span class="hljs-built_in">local</span> hname hsum opts args search
@@ -821,6 +828,7 @@ function space(n,   r) { for( ; n &gt; 0; n-- ) r = r &quot;    &quot;; return r
 <span class="hljs-built_in">export</span> <span class="hljs-operator">-f</span> header-dump
 <span class="hljs-built_in">export</span> <span class="hljs-operator">-f</span> header-function
 <span class="hljs-built_in">export</span> <span class="hljs-operator">-f</span> header-macro
+<span class="hljs-built_in">export</span> <span class="hljs-operator">-f</span> header-enum
 <span class="hljs-built_in">export</span> <span class="hljs-operator">-f</span> header-typedef
 </code></pre>
 <h1 id="3-">3 .</h1>
