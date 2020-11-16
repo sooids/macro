@@ -720,7 +720,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
 <pre><code class="lang-bash"><span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">dump</span></span> ()
 {
     <span class="hljs-built_in">local</span> hname hsum opts args search
-    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
+    header_args_ <span class="hljs-variable">$@</span>
     <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$search</span>&quot;</span> = <span class="hljs-string">&quot;-s&quot;</span>; <span class="hljs-keyword">then</span>
         cpp -M <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span>
     <span class="hljs-keyword">else</span>
@@ -731,7 +731,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">function</span></span> ()
 {
     <span class="hljs-built_in">local</span> hname hsum opts args
-    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
+    header_args_ <span class="hljs-variable">$@</span>
 
     cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> |
     sed -En <span class="hljs-operator">-e</span> <span class="hljs-string">&apos;/^\s*(__extension__\s+)?(extern|static)\s+/{ :X&apos;</span> \
@@ -746,7 +746,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">macro</span></span> () 
 {
     <span class="hljs-built_in">local</span> hname hsum opts args search
-    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
+    header_args_ <span class="hljs-variable">$@</span>
 
     <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> -n <span class="hljs-string">&quot;<span class="hljs-variable">$hsum</span>&quot;</span>; <span class="hljs-keyword">then</span>
         <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> -n <span class="hljs-string">&quot;<span class="hljs-variable">$search</span>&quot;</span>; <span class="hljs-keyword">then</span>
@@ -764,7 +764,7 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
 <span class="hljs-keyword">function</span> header-<span class="hljs-function"><span class="hljs-title">typedef</span></span> () 
 {
     <span class="hljs-built_in">local</span> hname hsum opts args search
-    header_args_ <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
+    header_args_ <span class="hljs-variable">$@</span>
 
     cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> |
 
@@ -795,9 +795,10 @@ function space(n,   r) { for( ; n &gt; 0; n-- ) r = r &quot;    &quot;; return r
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">header_args_</span></span> () {
+    <span class="hljs-built_in">local</span> file
     <span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { args=<span class="hljs-string">&quot;&quot;</span>
         <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> args+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
-        <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
+        <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-variable">$@</span> <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
     }
     <span class="hljs-keyword">while</span> <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> <span class="hljs-operator">-gt</span> <span class="hljs-number">0</span>; <span class="hljs-keyword">do</span>
         <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;--&quot;</span> &amp;&amp; { <span class="hljs-built_in">shift</span>; opts=<span class="hljs-string">&quot; <span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-built_in">break</span> ;}
@@ -810,7 +811,8 @@ function space(n,   r) { for( ; n &gt; 0; n-- ) r = r &quot;    &quot;; return r
             <span class="hljs-keyword">fi</span>
             <span class="hljs-built_in">shift</span>; <span class="hljs-built_in">continue</span>
         }
-        hsum+=<span class="hljs-string">&quot;#include &lt;<span class="hljs-variable">$1</span>&gt;&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
+        <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;#include&quot;</span> &amp;&amp; { <span class="hljs-built_in">shift</span>; file=<span class="hljs-variable">$1</span> ;} || file=<span class="hljs-string">&quot;&lt;<span class="hljs-variable">$1</span>&gt;&quot;</span>
+        hsum+=<span class="hljs-string">&quot;#include <span class="hljs-variable">$file</span>&quot;</span>$<span class="hljs-string">&apos;\n&apos;</span>
         <span class="hljs-built_in">shift</span>
     <span class="hljs-keyword">done</span>
 }
