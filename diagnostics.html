@@ -801,7 +801,8 @@ function space(n,   r) { for( ; n &gt; 0; n-- ) r = r &quot;    &quot;; return r
 &apos;</span>
 }
 
-<span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">header_args_</span></span> () {
+<span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">header_args_</span></span> ()
+{
     <span class="hljs-built_in">local</span> file
     <span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { args=<span class="hljs-string">&quot;&quot;</span>
         <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> args+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
