@@ -780,11 +780,12 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
     <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">${FUNCNAME[1]}</span>&quot;</span> = <span class="hljs-string">&quot;header-typedef&quot;</span>; <span class="hljs-keyword">then</span>
         AAA=<span class="hljs-string">&apos;/typedef/ {
              if (/^.*{.*typedef/) sub(/{/,&quot;&quot;); sub(/\s*};$/,&quot;&quot;);&apos;</span>
-        BBB=<span class="hljs-string">&apos;if ( res ~ &quot;\\y&quot;Q&quot;\\y.*;$&quot; ) { print res; exit }&apos;</span>
+        BBB=<span class="hljs-string">&apos;if ( res ~ Q&quot;[^}]*;$&quot; ) { print res }&apos;</span>
     <span class="hljs-keyword">else</span>
-        AAA=<span class="hljs-string">&apos;/struct\s+\w+/ &amp;&amp; !/typedef/ &amp;&amp; !/^# [0-9]+ &quot;/ {
-             if (!/{/ &amp;&amp; /[;,()*]/ ) next;&apos;</span>
-        BBB=<span class="hljs-string">&apos;if ( res ~ &quot;struct\\s+&quot;Q&quot;\\y&quot; ) { print res; exit }&apos;</span>
+        AAA=<span class="hljs-string">&apos;( /(struct|union)\s+\w+/ || /typedef\s+(struct|union)/ ) &amp;&amp; !/^# [0-9]+ &quot;/ \
+             { if (!/{/ &amp;&amp; /[;,()*]/ ) next;&apos;</span>
+        BBB=<span class="hljs-string">&apos;if ( res ~ &quot;^[^{]*(struct|union)\\s+[^{]*&quot;Q || res ~ Q&quot;[^}]*;$&quot; ) \
+             { print res }&apos;</span>
     <span class="hljs-keyword">fi</span>
 
     cpp <span class="hljs-variable">$opts</span> &lt;&lt;&lt; <span class="hljs-variable">$hsum</span> |
