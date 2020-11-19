@@ -782,8 +782,8 @@ $ header-dump stdlib.h -- -D_GNU_SOURCE
              if (/^.*{.*typedef/) sub(/{/,&quot;&quot;); sub(/\s*};$/,&quot;&quot;);&apos;</span>
         BBB=<span class="hljs-string">&apos;if ( res ~ Q&quot;[^}]*;$&quot; ) { print res }&apos;</span>
     <span class="hljs-keyword">else</span>
-        AAA=<span class="hljs-string">&apos;( /(struct|union)\s+\w+/ || /typedef\s+(struct|union)/ ) &amp;&amp; !/^# [0-9]+/ \
-             { if (!/{/ &amp;&amp; /[;,()*]/ ) next;&apos;</span>
+        AAA=<span class="hljs-string">&apos;( /(struct|union)\s+\w+/ || /typedef\s+(struct|union)/ ) &amp;&amp; !/^# [0-9]+/ {
+             if (!/{/ &amp;&amp; /[;,()*]/ ) next;&apos;</span>
         BBB=<span class="hljs-string">&apos;if ( res ~ &quot;^[^{]*(struct|union)\\s+[^{]*&quot;Q || res ~ Q&quot;[^}]*;$&quot; )
              { print res }&apos;</span>
     <span class="hljs-keyword">fi</span>
