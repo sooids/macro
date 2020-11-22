@@ -832,7 +832,7 @@ EVAL( DEFER( COUNT_ARGS ) ( CCC(111,222,333) ) )
 <pre><code>$ gcpp - &lt;&lt;\@
 #define EVAL(...) __VA_ARGS__
 #define JOIN(X, Y) X ## Y
-#define CAT(X, Y) JOIN(X, Y)               // CAT &#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC778;&#xC218; &#xD655;&#xC7A5;&#xC774; &#xB428;.
+#define CAT(X, Y) JOIN(X, Y)               // JOIN &#xB300;&#xC2E0; CAT &#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC778;&#xC218; &#xD655;&#xC7A5;&#xC774; &#xB428;.
 #define IF_1(true, ...) true
 #define IF_0(true, ...) __VA_ARGS__
 #define IF(value) CAT(IF_, value)
